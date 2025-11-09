@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Message Composer - Settings</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+    
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 32px;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    input[type="text"],
+    input[type="url"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    button.primary {
+      background: #0066cc;
+      color: white;
+    }
+    
+    button.primary:hover {
+      background: #0052a3;
+    }
+    
+    button.secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+    
+    button.secondary:hover {
+      background: #e0e0e0;
+    }
+    
+    .message {
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      display: none;
+    }
+    
+    .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .section {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .section h2 {
+      font-size: 18px;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚙️ Settings</h1>
+  <p class="subtitle">Configure your AI Message Composer extension</p>
+  
+  <div id="message" class="message"></div>
+  
+  <div class="section">
+    <h2>Backend Configuration</h2>
+    
+    <div class="form-group">
+      <label for="apiUrl">Backend API URL</label>
+      <input type="url" id="apiUrl" placeholder="http://localhost:8000">
+      <div class="help-text">The URL where your FastAPI backend is running</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="llmModel">LLM Model</label>
+      <select id="llmModel">
+        <option value="claude-sonnet-4-5-20250929">Claude Sonnet 4</option>
+        <option value="claude-3-sonnet-20240229">Claude 3 Sonnet</option>
+        <option value="claude-3-haiku-20240307">Claude 3 Haiku</option>
+        <option value="claude-3-opus-20240229">Claude 3 Opus</option>
+        <option value="gpt-4">GPT-4</option>
+        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+        <option value="fallback">Fallback (built-in)</option>
+      </select>
+      <div class="help-text">Choose the AI model for message rewriting. Claude Sonnet 4 requires an Anthropic key.</div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Message Preferences</h2>
+    
+    <div class="form-group">
+      <label for="defaultTone">Default Tone</label>
+      <select id="defaultTone">
+        <option value="professional">Professional</option>
+        <option value="friendly">Friendly</option>
+        <option value="formal">Formal</option>
+        <option value="casual">Casual</option>
+      </select>
+      <div class="help-text">Default tone for rewritten messages</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="autoStore">
+        <input type="checkbox" id="autoStore" style="width: auto; margin-right: 8px;">
+        Automatically store conversations
+      </label>
+      <div class="help-text">Save all messages to Neo4j for context in future rewrites</div>
+    </div>
+  </div>
+  
+  <div class="button-group">
+    <button class="primary" id="saveBtn">Save Settings</button>
+    <button class="secondary" id="resetBtn">Reset to Defaults</button>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
+
