@@ -1,6 +1,6 @@
 # AI Composer - Your Personal Writing Assistant with Memory
 
-> **⚠️ IMPORTANT NOTE:** Demo video doesn't show full functionality.
+> **⚠️ IMPORTANT NOTE:** Docs doesn't show full functionality.
 
 **Imagine AI able to scrape any website and store in an advanced memory which uses knowledge graphs, and you can chat endlessly. Helps you compose any email you write in your own words... also chat with any webpage, professor profile, you can even upload GitHub and understand the context by URL. You can chat with your own projects, assignments, and much more.**
 
